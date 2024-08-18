@@ -9,8 +9,6 @@ def call(Map config = [:]) {
             bannerColor    : currentBuild.result ? (currentBuild.result == 'SUCCESS' ? 'green' : 'red') : 'blue'
     ]
     def body = renderTemplate(htmlBody,htmlBindings)
-    echo body
-    
     emailext(
          subject: "${env.JOB_NAME} - Build: ${env.BUILD_NUMBER} - Pipeline Status: ${status}",
          body: body,
